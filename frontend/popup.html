@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClarityCart - AI Agent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated SVG Background -->
+    <div class="background-container">
+        <svg class="bg-waves" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="rgba(111, 0, 255, 0.4)" />
+                    <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+                </radialGradient>
+            </defs>
+            <circle cx="400" cy="300" r="400" fill="url(#glow)" class="slow-pulse" />
+            <path class="wave wave1" d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="rgba(88, 28, 255, 0.05)" />
+            <path class="wave wave2" d="M0,400 C300,300 500,500 800,400 L800,600 L0,600 Z" fill="rgba(0, 212, 255, 0.05)" />
+            <!-- Particles -->
+            <circle cx="100" cy="200" r="2" class="particle p1" />
+            <circle cx="600" cy="150" r="3" class="particle p2" />
+            <circle cx="300" cy="450" r="1.5" class="particle p3" />
+            <circle cx="700" cy="500" r="2.5" class="particle p4" />
+            <circle cx="200" cy="350" r="2" class="particle p5" />
+        </svg>
+    </div>
+
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <svg viewBox="0 0 24 24" class="logo-icon" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 0 1 9-9" />
+                </svg>
+                <h1 class="logo-text">Clarity<span class="highlight">Cart</span></h1>
+            </div>
+            <div class="settings-toggle">
+                <svg viewBox="0 0 24 24" class="icon" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- Main State: Input -->
+        <main class="content-section active" id="inputSection">
+            <div class="glass-card floating">
+                <p class="greeting">How can I help you shop?</p>
+                <div class="input-wrapper">
+                    <div class="input-glow"></div>
+                    <textarea id="promptInput" placeholder="e.g. Find me a good phone for my mom under $200 with a large battery." rows="3"></textarea>
+                    <div class="focus-border"></div>
+                </div>
+
+                <!-- Run Local Toggle -->
+                <div class="toggle-container">
+                    <span class="toggle-label">Run AI Locally (Privacy Mode)</span>
+                    <label class="switch">
+                        <input type="checkbox" id="localToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <!-- Analyze Button -->
+                <button class="btn-primary magnetic" id="analyzeBtn">
+                    <div class="btn-bg"></div>
+                    <span class="btn-text">Initialize Scan</span>
+                    <svg viewBox="0 0 24 24" class="btn-icon" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </main>
+
+        <!-- Loading State -->
+        <main class="content-section" id="loadingSection">
+            <div class="glass-card status-card">
+                <div class="orb-container">
+                    <div class="orb"></div>
+                    <div class="orb-ring ring1"></div>
+                    <div class="orb-ring ring2"></div>
+                </div>
+                <p class="status-text ghost-type">Quantum formatting DOM...</p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Results State -->
+        <main class="content-section" id="resultsSection">
+            <div class="glass-card floating result-card">
+                <div class="result-header">
+                    <div class="match-score">
+                        <svg class="circular-chart" viewBox="0 0 36 36">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span class="score-text">92%</span>
+                    </div>
+                    <div class="product-info">
+                        <h2 class="product-title">Samsung Galaxy M34 5G</h2>
+                        <span class="product-price">$189.99</span>
+                    </div>
+                </div>
+                
+                <div class="insights-panel">
+                    <div class="insight-item">
+                        <svg class="icon highlight-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>Massive 6000mAh battery</span>
+                    </div>
+                    <div class="insight-item">
+                        <svg class="icon highlight-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>Verified by Reddit users</span>
+                    </div>
+                </div>
+
+                <p class="ai-summary">
+                    "Perfect fit for your mom. The battery lasts over two days, and social sentiment indicates the UI is very easy to navigate without bloatware."
+                </p>
+
+                <div class="action-row">
+                    <button class="btn-secondary" id="backBtn">Back</button>
+                    <button class="btn-primary magnetic fill-width" id="buyBtn">
+                        <div class="btn-bg"></div>
+                        <span class="btn-text">Auto-Order</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

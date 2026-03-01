@@ -9,6 +9,27 @@
 </head>
 
 <body>
+  <!-- Animated SVG Background -->
+  <div class="background-container">
+    <svg class="bg-waves" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(111, 0, 255, 0.4)" />
+          <stop offset="100%" stop-color="rgba(0, 0, 0, 0)" />
+        </radialGradient>
+      </defs>
+      <circle cx="400" cy="300" r="400" fill="url(#glow)" class="slow-pulse" />
+      <path class="wave wave1" d="M0,300 C200,400 600,200 800,300 L800,600 L0,600 Z" fill="rgba(88, 28, 255, 0.05)" />
+      <path class="wave wave2" d="M0,400 C300,300 500,500 800,400 L800,600 L0,600 Z" fill="rgba(0, 212, 255, 0.05)" />
+      <!-- Particles -->
+      <circle cx="100" cy="200" r="2" class="particle p1" />
+      <circle cx="600" cy="150" r="3" class="particle p2" />
+      <circle cx="300" cy="450" r="1.5" class="particle p3" />
+      <circle cx="700" cy="500" r="2.5" class="particle p4" />
+      <circle cx="200" cy="350" r="2" class="particle p5" />
+    </svg>
+  </div>
+
   <div class="app">
     <!-- Header -->
     <header class="header">
